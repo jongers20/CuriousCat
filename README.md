@@ -8,6 +8,10 @@ The app fetches 10 images and their associated fact per request. When the user r
 
 Implemenation:
 * MVVM Design
+* Onboarding Screen
+* Launch Screen
+* App Icon
+* Unit Testing
 * Combine Framework: For binding
 * Swift's async/await syntax to handle API requests efficiently
 * Shimmer: A UIView that acts as a placeholder to indicate that the image is still loading
