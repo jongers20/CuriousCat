@@ -62,11 +62,19 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKF-KK-EPf">
+                                                        <rect key="frame" x="8" y="8.0000000000000018" width="14" height="26.666666666666671"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="23"/>
+                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.96877759699999999" green="0.91057801250000003" blue="0.84213626379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="xzn-Lp-4AZ" secondAttribute="trailing" constant="17" id="1yO-s6-PFM"/>
+                                                    <constraint firstItem="KKF-KK-EPf" firstAttribute="leading" secondItem="M05-XC-T5P" secondAttribute="leading" constant="8" id="GRa-WZ-u2E"/>
                                                     <constraint firstItem="xzn-Lp-4AZ" firstAttribute="top" secondItem="Hte-xC-SD5" secondAttribute="bottom" constant="15" id="OEJ-gj-aPr"/>
+                                                    <constraint firstItem="KKF-KK-EPf" firstAttribute="top" secondItem="M05-XC-T5P" secondAttribute="top" constant="8" id="bkl-md-SMZ"/>
                                                     <constraint firstItem="Hte-xC-SD5" firstAttribute="centerX" secondItem="M05-XC-T5P" secondAttribute="centerX" id="hqs-mf-gz0"/>
                                                     <constraint firstItem="Hte-xC-SD5" firstAttribute="top" secondItem="M05-XC-T5P" secondAttribute="top" constant="27" id="okO-ZX-pbv"/>
                                                     <constraint firstItem="xzn-Lp-4AZ" firstAttribute="leading" secondItem="M05-XC-T5P" secondAttribute="leading" constant="17" id="yR2-Ee-AMu"/>
@@ -98,6 +106,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="xzn-Lp-4AZ" id="cKd-Lf-yFk"/>
                         <outlet property="imageView" destination="cIh-2s-0Ys" id="wOJ-Cb-Mol"/>
+                        <outlet property="pageIndicatorLabel" destination="KKF-KK-EPf" id="7bG-z6-VYi"/>
                         <outlet property="shimmerView" destination="AJ8-aT-evs" id="dBr-le-d4n"/>
                         <outlet property="titleLabel" destination="Hte-xC-SD5" id="QTT-i1-rya"/>
                     </connections>
@@ -167,6 +176,9 @@
         <image name="onboarding1" width="1080" height="1920"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

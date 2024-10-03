@@ -17,6 +17,7 @@ class HomeScreenViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published private(set) var currentIndex: Int = 0
     private let limit: Int = 10
+    private var newPage = false
     private var cancellables = Set<AnyCancellable>()
     var onFetchDataRequested: (() -> Void)?
     
@@ -85,6 +86,7 @@ class HomeScreenViewModel: ObservableObject {
 extension HomeScreenViewModel {
     
     func handleTap(at location: CGPoint, in viewWidth: CGFloat) {
+        newPage = false
         if location.x < viewWidth / 2 {
             //lef tap, navigate back from the arr
             if self.currentIndex > 0 {
@@ -95,13 +97,19 @@ extension HomeScreenViewModel {
             if let count = factsArr?.count, currentIndex < count - 1{
                 self.currentIndex += 1
             } else {
+                self.currentIndex = 0
+                self.newPage = true
                 self.onFetchDataRequested?()
             }
         }
     }
     
-    func getCurrentIndex() -> Int {
-        return self.currentIndex
+    func isNewPage() -> Bool {
+        if self.currentIndex == 0 && newPage {
+            return true
+        } else {
+            return false
+        }
     }
     
 }

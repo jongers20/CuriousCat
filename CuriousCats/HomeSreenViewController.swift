@@ -14,7 +14,7 @@ class HomeSreenViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shimmerView: ShimmerView!
-    
+    @IBOutlet weak var pageIndicatorLabel: UILabel!
     private var viewModel: HomeScreenViewModel!
     private var cancellables = Set<AnyCancellable>() //For resouce management
     //jong
@@ -37,6 +37,7 @@ class HomeSreenViewController: UIViewController {
     
     func callFetchData(){
         Task {
+            self.shimmer()
             await viewModel.fetchData()
         }
     }
@@ -84,16 +85,19 @@ class HomeSreenViewController: UIViewController {
         viewModel.handleTap(at: tapLocation, in: screenWidth)
     }
     
-    func refreshUI() {
-        
+    func shimmer() {
         shimmerView.isHidden = false
         shimmerView.startShimmering()
+    }
+    
+    func refreshUI() {
+        self.shimmer()
         
         guard let factsArr = viewModel.factsArr else { return }
-
         
         if viewModel.currentIndex < factsArr.count {
             descriptionLabel.text = factsArr[viewModel.currentIndex]
+            pageIndicatorLabel.text = String("\(viewModel.currentIndex + 1)")
         }
 
         currentLoadingTask?.cancel()
@@ -112,15 +116,16 @@ class HomeSreenViewController: UIViewController {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.shimmerView.isHidden = true
-                    self.shimmerView.stopShimmering()
-                    self.imageView.image = image
+                    if !self.viewModel.isNewPage() {
+                        self.shimmerView.isHidden = true
+                        self.shimmerView.stopShimmering()
+                        self.imageView.image = image
+                    }
                     self.isLoadingImage = false
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.shimmerView.isHidden = false
-                    self.shimmerView.startShimmering()
+                    self.shimmer()
                     self.isLoadingImage = false
                     self.refreshUI()
                 }
